@@ -26,7 +26,7 @@ export function setupStockRoutes(app: Express) {
       return res.status(400).json({ message: "Search query is required" });
     }
     
-    const results = mockStockData.filter(stock => 
+    const results = mockStockData.filter((stock: any) => 
       stock.symbol.toLowerCase().includes(query.toLowerCase()) || 
       stock.name.toLowerCase().includes(query.toLowerCase())
     );
@@ -38,7 +38,7 @@ export function setupStockRoutes(app: Express) {
   app.get("/api/stock/quote/:symbol", (req, res) => {
     const symbol = req.params.symbol;
     
-    const stock = mockStockData.find(s => 
+    const stock = mockStockData.find((s: any) => 
       s.symbol.toLowerCase() === symbol.toLowerCase()
     );
     

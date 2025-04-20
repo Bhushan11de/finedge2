@@ -104,15 +104,14 @@ export default function Navbar() {
             <div className="hidden md:block ml-10">
               <div className="flex items-center space-x-4">
                 {navLinks.map((link) => (
-                  <Link key={link.path} href={link.path}>
-                    <a className={`px-3 py-2 rounded-md text-sm font-medium 
+                  <Link key={link.path} href={link.path} 
+                    className={`px-3 py-2 rounded-md text-sm font-medium 
                       ${location === link.path 
                         ? 'text-primary bg-primary/10' 
                         : 'text-foreground hover:text-primary hover:bg-primary/5'
                       }`}
-                    >
-                      {link.label}
-                    </a>
+                  >
+                    {link.label}
                   </Link>
                 ))}
               </div>
@@ -173,10 +172,10 @@ export default function Navbar() {
                 <DropdownMenuContent align="end">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link href="/profile">Profile</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link href="/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
@@ -203,17 +202,17 @@ export default function Navbar() {
                   <div className="py-4">
                     <div className="space-y-1">
                       {navLinks.map((link) => (
-                        <Link key={link.path} href={link.path}>
-                          <a 
-                            className={`block px-3 py-2 rounded-md text-base font-medium 
-                              ${location === link.path 
-                                ? 'text-primary bg-primary/10' 
-                                : 'text-foreground hover:text-primary hover:bg-primary/5'
-                              }`}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            {link.label}
-                          </a>
+                        <Link 
+                          key={link.path} 
+                          href={link.path}
+                          className={`block px-3 py-2 rounded-md text-base font-medium 
+                            ${location === link.path 
+                              ? 'text-primary bg-primary/10' 
+                              : 'text-foreground hover:text-primary hover:bg-primary/5'
+                            }`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {link.label}
                         </Link>
                       ))}
                       <Button 

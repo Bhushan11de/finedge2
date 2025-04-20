@@ -251,7 +251,7 @@ export default function TradeModal({ isOpen, onClose, stock }: TradeModalProps) 
             <div className="pt-4 border-t">
               <div className="flex justify-between mb-2">
                 <span className="text-muted-foreground">Estimated Cost</span>
-                <span className="font-mono font-medium">${totalCost.toFixed(2)}</span>
+                <span className="font-mono font-medium">${typeof totalCost === 'number' ? totalCost.toFixed(2) : '0.00'}</span>
               </div>
             </div>
             
