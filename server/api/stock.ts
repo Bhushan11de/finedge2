@@ -57,7 +57,7 @@ export function setupStockRoutes(app: Express) {
       return res.status(400).json({ message: "Symbol is required" });
     }
     
-    const stock = mockStockData.find(s => 
+    const stock = mockStockData.find((s: any) => 
       s.symbol.toLowerCase() === symbol.toLowerCase()
     );
     
@@ -73,7 +73,7 @@ export function setupStockRoutes(app: Express) {
     const symbol = req.params.symbol;
     const period = req.query.period as string || '1y';
     
-    const stock = mockStockData.find(s => 
+    const stock = mockStockData.find((s: any) => 
       s.symbol.toLowerCase() === symbol.toLowerCase()
     );
     
