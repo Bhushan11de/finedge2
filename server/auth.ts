@@ -71,26 +71,32 @@ export async function setupAuth(app: Express) {
 
   app.post("/api/register", async (req, res, next) => {
     try {
-      const { username, password, firstName, lastName, email } = req.body;
+      const { username, password, firstName, lastName, email, role } = req.body;
       
       const existingUser = await storage.getUserByUsername(username);
       if (existingUser) {
         return res.status(400).json({ message: "Username already exists" });
       }
 
+      // Default to user role if not specified
+      const userRole = role || "user";
+      
       const user = await storage.createUser({
         username,
         password: await hashPassword(password),
         firstName,
         lastName,
         email,
+        role: userRole,
       });
 
       req.login(user, (err) => {
         if (err) return next(err);
         
-        // Initialize portfolio with starting cash
-        storage.createPortfolio(user.id, 10000);
+        // Initialize portfolio with starting cash (only for regular users)
+        if (userRole === "user") {
+          storage.createPortfolio(user.id, 10000);
+        }
         
         res.status(201).json(user);
       });
@@ -99,8 +105,30 @@ export async function setupAuth(app: Express) {
     }
   });
 
+  // Regular user login
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
-    res.status(200).json(req.user);
+    // If an admin tries to log in via user login, deny access
+    if (req.user && req.user.role === "admin") {
+      req.logout((err) => {
+        if (err) console.error(err);
+        return res.status(403).json({ message: "Please use admin login" });
+      });
+    } else {
+      res.status(200).json(req.user);
+    }
+  });
+  
+  // Admin login
+  app.post("/api/admin/login", passport.authenticate("local"), (req, res) => {
+    // Check if the user has admin role
+    if (req.user && req.user.role === "admin") {
+      res.status(200).json(req.user);
+    } else {
+      req.logout((err) => {
+        if (err) console.error(err);
+        return res.status(403).json({ message: "Unauthorized. Admin access required." });
+      });
+    }
   });
 
   app.post("/api/logout", (req, res, next) => {

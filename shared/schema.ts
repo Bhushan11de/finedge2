@@ -10,6 +10,7 @@ export const users = pgTable("users", {
   firstName: text("first_name"),
   lastName: text("last_name"),
   email: text("email"),
+  role: text("role").default("user").notNull(), // 'admin' or 'user'
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -19,6 +20,7 @@ export const insertUserSchema = createInsertSchema(users).pick({
   firstName: true,
   lastName: true,
   email: true,
+  role: true,
 });
 
 // Portfolios schema

@@ -18,7 +18,9 @@ type AuthContextType = {
   forgotPasswordMutation: UseMutationResult<void, Error, ForgotPasswordData>;
 };
 
-type LoginData = Pick<InsertUser, "username" | "password">;
+type LoginData = Pick<InsertUser, "username" | "password"> & {
+  endpoint?: string;
+};
 type ForgotPasswordData = { email: string };
 
 export const AuthContext = createContext<AuthContextType | null>(null);

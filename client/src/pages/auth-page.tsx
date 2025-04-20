@@ -38,6 +38,7 @@ type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 function AuthPageContent() {
   const [activeTab, setActiveTab] = useState<string>("login");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
   const { toast } = useToast();
   const [location, navigate] = useLocation();
   const { user, loginMutation, registerMutation, forgotPasswordMutation } = useAuth();
@@ -77,7 +78,19 @@ function AuthPageContent() {
   });
 
   const onLoginSubmit = (data: LoginFormValues) => {
-    loginMutation.mutate(data);
+    if (isAdminLogin) {
+      // Use admin login endpoint
+      loginMutation.mutate({
+        ...data,
+        endpoint: '/api/admin/login'
+      });
+    } else {
+      // Use regular user login endpoint
+      loginMutation.mutate({
+        ...data,
+        endpoint: '/api/login'
+      });
+    }
   };
 
   const onRegisterSubmit = (data: RegisterFormValues) => {
