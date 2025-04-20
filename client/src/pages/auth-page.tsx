@@ -35,7 +35,7 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 type RegisterFormValues = z.infer<typeof registerSchema>;
 type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
-export default function AuthPage() {
+function AuthPageContent() {
   const [activeTab, setActiveTab] = useState<string>("login");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const { toast } = useToast();
@@ -354,4 +354,24 @@ export default function AuthPage() {
       </div>
     </div>
   );
+}
+
+export default function AuthPage() {
+  try {
+    return <AuthPageContent />;
+  } catch (error) {
+    // Fallback to a basic login page if there's an error with the auth context
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+        <Card className="w-full max-w-md">
+          <CardContent className="pt-6">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-primary">FinEdge</h1>
+              <p className="text-muted-foreground mt-2">Loading authentication...</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 }

@@ -1,147 +1,288 @@
-// Mock data for market indices
 export const mockMarketIndices = [
   {
-    symbol: "SPX",
+    symbol: "^GSPC",
     name: "S&P 500",
-    price: 4587.64,
-    change: 56.23,
-    changePercent: 1.23
+    price: 5242.50,
+    change: 12.34,
+    changePercent: 0.24,
   },
   {
-    symbol: "COMP",
-    name: "NASDAQ",
-    price: 14346.21,
-    change: 124.81,
-    changePercent: 0.87
+    symbol: "^DJI",
+    name: "Dow Jones",
+    price: 38967.25,
+    change: 103.45,
+    changePercent: 0.27,
   },
   {
-    symbol: "DJI",
-    name: "DOW JONES",
-    price: 35084.53,
-    change: -147.35,
-    changePercent: -0.42
+    symbol: "^IXIC",
+    name: "Nasdaq",
+    price: 16382.90,
+    change: -20.75,
+    changePercent: -0.13,
   },
   {
-    symbol: "RUT",
-    name: "RUSSELL 2000",
-    price: 2287.55,
-    change: 14.41,
-    changePercent: 0.63
-  }
+    symbol: "^RUT",
+    name: "Russell 2000",
+    price: 2089.65,
+    change: 5.22,
+    changePercent: 0.25,
+  },
 ];
 
-// Mock data for individual stocks
 export const mockStockData = [
   {
     symbol: "AAPL",
-    name: "Apple Inc",
-    price: 145.86,
-    change: 3.42,
-    changePercent: 2.40
+    name: "Apple Inc.",
+    price: 187.32,
+    change: 1.23,
+    changePercent: 0.66,
   },
   {
     symbol: "MSFT",
-    name: "Microsoft Corp",
-    price: 286.22,
-    change: 3.56,
-    changePercent: 1.26
+    name: "Microsoft Corporation",
+    price: 418.35,
+    change: 2.14,
+    changePercent: 0.51,
   },
   {
     symbol: "AMZN",
-    name: "Amazon.com Inc",
-    price: 3340.45,
-    change: 17.71,
-    changePercent: 0.53
+    name: "Amazon.com, Inc.",
+    price: 180.85,
+    change: -0.95,
+    changePercent: -0.52,
   },
   {
     symbol: "GOOGL",
-    name: "Alphabet Inc",
-    price: 2704.42,
-    change: -23.71,
-    changePercent: -0.87
+    name: "Alphabet Inc.",
+    price: 152.75,
+    change: 0.45,
+    changePercent: 0.30,
   },
   {
     symbol: "META",
-    name: "Meta Platforms Inc",
-    price: 312.46,
-    change: 4.83,
-    changePercent: 1.57
+    name: "Meta Platforms, Inc.",
+    price: 476.20,
+    change: 5.30,
+    changePercent: 1.13,
   },
   {
     symbol: "TSLA",
-    name: "Tesla Inc",
-    price: 765.34,
-    change: 53.12,
-    changePercent: 7.45
-  },
-  {
-    symbol: "NFLX",
-    name: "Netflix Inc",
-    price: 532.11,
-    change: -18.05,
-    changePercent: -3.28
-  },
-  {
-    symbol: "JPM",
-    name: "JPMorgan Chase & Co",
-    price: 141.32,
-    change: 0.87,
-    changePercent: 0.62
-  },
-  {
-    symbol: "V",
-    name: "Visa Inc",
-    price: 232.65,
-    change: 1.15,
-    changePercent: 0.5
-  },
-  {
-    symbol: "DIS",
-    name: "Walt Disney Co",
-    price: 178.23,
-    change: -4.59,
-    changePercent: -2.51
+    name: "Tesla, Inc.",
+    price: 185.90,
+    change: -1.50,
+    changePercent: -0.80,
   },
   {
     symbol: "NVDA",
-    name: "NVIDIA Corp",
-    price: 194.59,
-    change: 8.34,
-    changePercent: 4.48
+    name: "NVIDIA Corporation",
+    price: 882.60,
+    change: 12.25,
+    changePercent: 1.41,
   },
   {
-    symbol: "PG",
-    name: "Procter & Gamble Co",
-    price: 142.37,
-    change: -0.18,
-    changePercent: -0.13
+    symbol: "JPM",
+    name: "JPMorgan Chase & Co.",
+    price: 193.45,
+    change: 0.75,
+    changePercent: 0.39,
   },
   {
-    symbol: "HD",
-    name: "Home Depot Inc",
-    price: 321.54,
-    change: 3.18,
-    changePercent: 1.00
+    symbol: "BRK.B",
+    name: "Berkshire Hathaway Inc.",
+    price: 432.65,
+    change: 1.05,
+    changePercent: 0.24,
   },
   {
-    symbol: "PYPL",
-    name: "PayPal Holdings Inc",
-    price: 278.11,
-    change: -12.43,
-    changePercent: -4.28
+    symbol: "JNJ",
+    name: "Johnson & Johnson",
+    price: 147.85,
+    change: -0.35,
+    changePercent: -0.24,
+  },
+];
+
+export const mockPortfolioData = {
+  totalValue: 25463.75,
+  todayChange: 234.50,
+  todayChangePercent: 0.93,
+  performanceData: {
+    "1D": Array.from({ length: 24 }, (_, i) => ({
+      date: `2023-07-${String(20 + Math.floor(i/6)).padStart(2, '0')} ${String(4*(i%6)).padStart(2, '0')}:00`,
+      value: 25000 + Math.random() * 500,
+    })),
+    "1W": Array.from({ length: 7 }, (_, i) => ({
+      date: `2023-07-${String(14 + i).padStart(2, '0')}`,
+      value: 24500 + Math.random() * 1000,
+    })),
+    "1M": Array.from({ length: 30 }, (_, i) => ({
+      date: `2023-06-${String(22 + i).padStart(2, '0')}`,
+      value: 24000 + Math.random() * 1500,
+    })),
+    "3M": Array.from({ length: 12 }, (_, i) => ({
+      date: `2023-${String(4 + Math.floor(i/4)).padStart(2, '0')}-${String(1 + (i%4)*7).padStart(2, '0')}`,
+      value: 23000 + Math.random() * 2500,
+    })),
+    "1Y": Array.from({ length: 12 }, (_, i) => ({
+      date: `2022-${String(7 + i).padStart(2, '0')}-01`,
+      value: 20000 + Math.random() * 5000,
+    })),
+    "ALL": Array.from({ length: 24 }, (_, i) => ({
+      date: `${2021 + Math.floor(i/12)}-${String(1 + i%12).padStart(2, '0')}-01`,
+      value: 10000 + (i * 500) + Math.random() * 1000,
+    })),
+  },
+  allocation: [
+    { sector: "Technology", percentage: 35 },
+    { sector: "Healthcare", percentage: 20 },
+    { sector: "Consumer Cyclical", percentage: 15 },
+    { sector: "Financial Services", percentage: 12 },
+    { sector: "Communication Services", percentage: 10 },
+    { sector: "Other", percentage: 8 },
+  ],
+};
+
+export const mockTransactionsData = {
+  transactions: [
+    {
+      id: 1,
+      date: "2023-07-20 10:23:45",
+      symbol: "AAPL",
+      name: "Apple Inc.",
+      type: "buy",
+      shares: 5,
+      price: 186.56,
+      total: 932.80,
+    },
+    {
+      id: 2,
+      date: "2023-07-18 14:45:12",
+      symbol: "MSFT",
+      name: "Microsoft Corporation",
+      type: "buy",
+      shares: 2,
+      price: 415.25,
+      total: 830.50,
+    },
+    {
+      id: 3,
+      date: "2023-07-15 09:32:18",
+      symbol: "TSLA",
+      name: "Tesla, Inc.",
+      type: "sell",
+      shares: 3,
+      price: 184.25,
+      total: 552.75,
+    },
+    {
+      id: 4,
+      date: "2023-07-12 11:15:30",
+      symbol: "AMZN",
+      name: "Amazon.com, Inc.",
+      type: "buy",
+      shares: 4,
+      price: 175.35,
+      total: 701.40,
+    },
+    {
+      id: 5,
+      date: "2023-07-10 15:22:45",
+      symbol: "GOOGL",
+      name: "Alphabet Inc.",
+      type: "buy",
+      shares: 3,
+      price: 148.78,
+      total: 446.34,
+    },
+    {
+      id: 6,
+      date: "2023-07-05 13:45:10",
+      symbol: "META",
+      name: "Meta Platforms, Inc.",
+      type: "buy",
+      shares: 2,
+      price: 468.25,
+      total: 936.50,
+    },
+    {
+      id: 7,
+      date: "2023-07-03 10:12:34",
+      symbol: "AAPL",
+      name: "Apple Inc.",
+      type: "sell",
+      shares: 2,
+      price: 185.75,
+      total: 371.50,
+    },
+    {
+      id: 8,
+      date: "2023-06-28 14:23:45",
+      symbol: "NVDA",
+      name: "NVIDIA Corporation",
+      type: "buy",
+      shares: 1,
+      price: 860.35,
+      total: 860.35,
+    },
+    {
+      id: 9,
+      date: "2023-06-25 09:45:12",
+      symbol: "JPM",
+      name: "JPMorgan Chase & Co.",
+      type: "buy",
+      shares: 3,
+      price: 190.25,
+      total: 570.75,
+    },
+    {
+      id: 10,
+      date: "2023-06-20 11:32:18",
+      symbol: "JNJ",
+      name: "Johnson & Johnson",
+      type: "buy",
+      shares: 4,
+      price: 145.85,
+      total: 583.40,
+    },
+  ],
+  totalPages: 3,
+  currentPage: 1,
+};
+
+export const mockWatchlistData = [
+  {
+    symbol: "NVDA",
+    name: "NVIDIA Corporation",
+    price: 882.60,
+    change: 12.25,
+    changePercent: 1.41,
+  },
+  {
+    symbol: "AMD",
+    name: "Advanced Micro Devices, Inc.",
+    price: 158.32,
+    change: 2.45,
+    changePercent: 1.57,
   },
   {
     symbol: "INTC",
-    name: "Intel Corp",
-    price: 54.83,
-    change: -1.25,
-    changePercent: -2.23
+    name: "Intel Corporation",
+    price: 31.87,
+    change: -0.25,
+    changePercent: -0.78,
   },
   {
-    symbol: "ADBE",
-    name: "Adobe Inc",
-    price: 613.82,
-    change: 6.92,
-    changePercent: 1.14
-  }
+    symbol: "GOOG",
+    name: "Alphabet Inc.",
+    price: 153.15,
+    change: 0.65,
+    changePercent: 0.43,
+  },
+  {
+    symbol: "AMZN",
+    name: "Amazon.com, Inc.",
+    price: 180.85,
+    change: -0.95,
+    changePercent: -0.52,
+  },
 ];
