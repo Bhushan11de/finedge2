@@ -11,6 +11,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -163,8 +165,8 @@ function AuthPageContent() {
         <Card className="w-full max-w-md">
           <CardContent className="pt-6">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-primary">FinEdge</h1>
-              <p className="text-muted-foreground mt-2">Stock Tracker</p>
+              <h1 className="text-3xl font-bold text-primary">Stock Tracker</h1>
+              <p className="text-muted-foreground mt-2">Track your investments</p>
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab}>
@@ -216,13 +218,30 @@ function AuthPageContent() {
                       )}
                     />
 
-                    <Button 
-                      type="submit" 
-                      className="w-full" 
-                      disabled={loginMutation.isPending}
-                    >
-                      {loginMutation.isPending ? "Signing in..." : "Sign in"}
-                    </Button>
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-2">
+                        <Switch
+                          id="admin-mode"
+                          checked={isAdminLogin}
+                          onCheckedChange={setIsAdminLogin}
+                        />
+                        <Label htmlFor="admin-mode" className="font-medium">
+                          {isAdminLogin ? "Admin Login" : "User Login"}
+                        </Label>
+                      </div>
+                      
+                      <Button 
+                        type="submit" 
+                        className="w-full" 
+                        disabled={loginMutation.isPending}
+                      >
+                        {loginMutation.isPending 
+                          ? "Signing in..." 
+                          : isAdminLogin 
+                            ? "Sign in as Admin" 
+                            : "Sign in as User"}
+                      </Button>
+                    </div>
                   </form>
                 </Form>
               </TabsContent>
@@ -379,7 +398,7 @@ export default function AuthPage() {
         <Card className="w-full max-w-md">
           <CardContent className="pt-6">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-primary">FinEdge</h1>
+              <h1 className="text-3xl font-bold text-primary">Stock Tracker</h1>
               <p className="text-muted-foreground mt-2">Loading authentication...</p>
             </div>
           </CardContent>
