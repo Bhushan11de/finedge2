@@ -166,13 +166,13 @@ export default function TradeModal({ isOpen, onClose, stock }: TradeModalProps) 
               <div className="flex justify-between mb-2">
                 <span className="text-muted-foreground">Current Price</span>
                 <span className="font-mono font-medium">
-                  ${(stock?.price || stockData?.price || 0).toFixed(2)}
+                  ${typeof (stock?.price || stockData?.price || 0) === 'number' ? (stock?.price || stockData?.price || 0).toFixed(2) : '0.00'}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Available Cash</span>
                 <span className="font-mono text-foreground">
-                  ${(portfolio?.cashBalance || 0).toFixed(2)}
+                  ${typeof (portfolio?.cashBalance || 0) === 'number' ? (portfolio?.cashBalance || 0).toFixed(2) : '0.00'}
                 </span>
               </div>
             </div>

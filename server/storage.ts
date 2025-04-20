@@ -474,7 +474,7 @@ export class DatabaseStorage implements IStorage {
       .limit(perPage)
       .offset((page - 1) * perPage);
     
-    const transactions = await query;
+    const transactionResults = await query;
     
     // Count total for pagination
     let countQuery = db
@@ -492,7 +492,7 @@ export class DatabaseStorage implements IStorage {
     const total = totalCount.length;
     
     return {
-      transactions,
+      transactions: transactionResults,
       currentPage: page,
       totalPages: Math.ceil(total / perPage),
       totalCount: total,

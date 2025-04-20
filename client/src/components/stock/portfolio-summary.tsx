@@ -75,7 +75,7 @@ export default function PortfolioSummary({ portfolio, isLoading = false }: Portf
                   ) : (
                     <>
                       <p className="text-3xl font-semibold font-mono">
-                        ${portfolio?.totalValue.toFixed(2)}
+                        ${typeof portfolio?.totalValue === 'number' ? portfolio.totalValue.toFixed(2) : '0.00'}
                       </p>
                       <span className={`text-sm font-medium ${
                         portfolio?.todayChange && portfolio.todayChange >= 0 
@@ -83,9 +83,9 @@ export default function PortfolioSummary({ portfolio, isLoading = false }: Portf
                           : 'text-danger-500'
                       }`}>
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? '+' : ''}
-                        ${portfolio?.todayChange.toFixed(2)} (
+                        ${typeof portfolio?.todayChange === 'number' ? portfolio.todayChange.toFixed(2) : '0.00'} (
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? '+' : ''}
-                        {portfolio?.todayChangePercent.toFixed(2)}%)
+                        {typeof portfolio?.todayChangePercent === 'number' ? portfolio.todayChangePercent.toFixed(2) : '0.00'}%)
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? ' ↑' : ' ↓'}
                       </span>
                     </>
@@ -106,7 +106,7 @@ export default function PortfolioSummary({ portfolio, isLoading = false }: Portf
                           : 'text-danger-500'
                       }`}>
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? '+' : ''}
-                        ${portfolio?.todayChange.toFixed(2)}
+                        ${typeof portfolio?.todayChange === 'number' ? portfolio.todayChange.toFixed(2) : '0.00'}
                       </p>
                       <span className={`text-sm font-medium ${
                         portfolio?.todayChange && portfolio.todayChange >= 0 
@@ -114,7 +114,7 @@ export default function PortfolioSummary({ portfolio, isLoading = false }: Portf
                           : 'text-danger-500'
                       }`}>
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? '+' : ''}
-                        {portfolio?.todayChangePercent.toFixed(2)}%
+                        {typeof portfolio?.todayChangePercent === 'number' ? portfolio.todayChangePercent.toFixed(2) : '0.00'}%
                         {portfolio?.todayChange && portfolio.todayChange >= 0 ? ' ↑' : ' ↓'}
                       </span>
                     </>
@@ -152,7 +152,7 @@ export default function PortfolioSummary({ portfolio, isLoading = false }: Portf
                 <>
                   <div className="flex items-center justify-center mb-4 relative">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-xl font-semibold">${portfolio?.totalValue.toFixed(2)}</span>
+                      <span className="text-xl font-semibold">${typeof portfolio?.totalValue === 'number' ? portfolio.totalValue.toFixed(2) : '0.00'}</span>
                     </div>
                     <svg viewBox="0 0 100 100" className="h-48 w-48 transform -rotate-90">
                       {portfolio?.allocation.map((sector, index) => {
