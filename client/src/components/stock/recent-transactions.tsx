@@ -96,8 +96,8 @@ export default function RecentTransactions({
                           </Badge>
                         </TableCell>
                         <TableCell className="font-mono">{transaction.shares}</TableCell>
-                        <TableCell className="font-mono">${transaction.price.toFixed(2)}</TableCell>
-                        <TableCell className="font-mono">${transaction.total.toFixed(2)}</TableCell>
+                        <TableCell className="font-mono">${typeof transaction.price === 'number' ? transaction.price.toFixed(2) : '0.00'}</TableCell>
+                        <TableCell className="font-mono">${typeof transaction.total === 'number' ? transaction.total.toFixed(2) : '0.00'}</TableCell>
                       </TableRow>
                     ))
                   ) : (

@@ -80,10 +80,11 @@ export default function PortfolioPage() {
               ) : (
                 <>
                   <div className="text-3xl font-semibold font-mono">
-                    ${portfolio?.totalValue.toFixed(2)}
+                    ${typeof portfolio?.totalValue === 'number' ? portfolio.totalValue.toFixed(2) : '0.00'}
                   </div>
                   <div className={`text-sm font-medium mt-1 ${portfolio?.todayChange >= 0 ? 'text-success-500' : 'text-danger-500'}`}>
-                    {portfolio?.todayChange >= 0 ? '+' : ''}${portfolio?.todayChange.toFixed(2)} ({portfolio?.todayChangePercent.toFixed(2)}%)
+                    {portfolio?.todayChange >= 0 ? '+' : ''}${typeof portfolio?.todayChange === 'number' ? portfolio.todayChange.toFixed(2) : '0.00'} 
+                    ({typeof portfolio?.todayChangePercent === 'number' ? portfolio.todayChangePercent.toFixed(2) : '0.00'}%)
                     {portfolio?.todayChange >= 0 ? '↑' : '↓'}
                   </div>
                 </>
@@ -103,10 +104,10 @@ export default function PortfolioPage() {
               ) : (
                 <>
                   <div className="text-3xl font-semibold font-mono">
-                    ${portfolio?.totalReturn.toFixed(2)}
+                    ${typeof portfolio?.totalReturn === 'number' ? portfolio.totalReturn.toFixed(2) : '0.00'}
                   </div>
                   <div className={`text-sm font-medium mt-1 ${portfolio?.totalReturnPercent >= 0 ? 'text-success-500' : 'text-danger-500'}`}>
-                    {portfolio?.totalReturnPercent >= 0 ? '+' : ''}{portfolio?.totalReturnPercent.toFixed(2)}%
+                    {portfolio?.totalReturnPercent >= 0 ? '+' : ''}{typeof portfolio?.totalReturnPercent === 'number' ? portfolio.totalReturnPercent.toFixed(2) : '0.00'}%
                     {portfolio?.totalReturnPercent >= 0 ? '↑' : '↓'}
                   </div>
                 </>
@@ -125,7 +126,7 @@ export default function PortfolioPage() {
                 <Skeleton className="h-10 w-36" />
               ) : (
                 <div className="text-3xl font-semibold font-mono">
-                  ${portfolio?.cashBalance.toFixed(2)}
+                  ${typeof portfolio?.cashBalance === 'number' ? portfolio.cashBalance.toFixed(2) : '0.00'}
                 </div>
               )}
             </CardContent>
@@ -243,7 +244,7 @@ export default function PortfolioPage() {
                       {/* This would be a pie chart in a real implementation */}
                       <div className="relative h-[300px] w-[300px]">
                         <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-xl font-semibold">${portfolio?.totalValue.toFixed(2)}</span>
+                          <span className="text-xl font-semibold">${typeof portfolio?.totalValue === 'number' ? portfolio.totalValue.toFixed(2) : '0.00'}</span>
                         </div>
                         <svg viewBox="0 0 100 100" className="h-full w-full transform -rotate-90">
                           {portfolio?.allocation.map((sector, index) => {
