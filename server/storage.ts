@@ -5,6 +5,9 @@ import createMemoryStore from "memorystore";
 import session from "express-session";
 import { mockStockData } from "./api/mockData";
 
+// Fix for SessionStore type
+type SessionStore = ReturnType<typeof createMemoryStore>;
+
 // Interface for all storage operations
 export interface IStorage {
   // User management
@@ -30,12 +33,12 @@ export interface IStorage {
   getTransactions(userId: number, page: number, perPage: number, filter?: string): Promise<any>;
   
   // Session store
-  sessionStore: session.SessionStore;
+  sessionStore: SessionStore;
 }
 
 // Database implementation
 export class DatabaseStorage implements IStorage {
-  sessionStore: session.SessionStore;
+  sessionStore: SessionStore;
   
   constructor() {
     const MemoryStore = createMemoryStore(session);
